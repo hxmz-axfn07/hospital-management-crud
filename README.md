@@ -1,26 +1,24 @@
 # City Hospital Management System
 
-A command-line CRUD application for managing hospital patients and staff records with MySQL.
+Simple Python + MySQL command-line CRUD project for hospital records.
 
-## Features
+## What It Can Do
 
-- Create the `city_hospital` database and required tables automatically.
-- Manage patient, doctor, nurse, and worker records.
-- Add, display, update, delete, and discharge records.
-- Display tabular output with PrettyTable.
-- Use parameterized SQL queries for safer database operations.
+- Add, show, update, and delete doctor records.
+- Add, show, update, and delete nurse records.
+- Add, show, update, and delete worker records.
+- Add, show, and discharge patient records.
+- Create the MySQL database and tables automatically.
 
-## Project Structure
+## Folder Structure
 
 ```text
 hms_crud/
 ├── hms/
 │   ├── __init__.py
 │   ├── __main__.py
-│   ├── cli.py
-│   ├── config.py
-│   ├── database.py
-│   └── repository.py
+│   ├── app.py
+│   └── db.py
 ├── hms_complete_final.py
 ├── requirements.txt
 ├── README.md
@@ -29,65 +27,54 @@ hms_crud/
 
 ## Requirements
 
-- Python 3.10+
-- MySQL Server running locally or remotely
-- Python packages listed in `requirements.txt`
+- Python 3.10 or newer
+- MySQL Server
+- Packages from `requirements.txt`
 
 ## Setup
 
-1. Create and activate a virtual environment:
+Create virtual environment:
 
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate
-   ```
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
 
-2. Install dependencies:
+Install packages:
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-3. Make sure MySQL Server is running.
+Run app:
 
-4. Run the application:
+```bash
+python -m hms
+```
 
-   ```bash
-   python -m hms
-   ```
+Old filename also works:
 
-   You can also use the legacy launcher:
+```bash
+python hms_complete_final.py
+```
 
-   ```bash
-   python hms_complete_final.py
-   ```
+## Database Login
 
-## Optional Environment Variables
+App asks for MySQL username and password when it starts.
 
-Set these to skip interactive database prompts:
+You can also set these environment variables:
 
 ```bash
 set HMS_DB_HOST=localhost
 set HMS_DB_USER=root
 set HMS_DB_PASSWORD=your_password
-set HMS_DB_NAME=city_hospital
 ```
 
-## GitHub Push
+## Push To GitHub
 
-Initialize a git repo and push:
+Create empty GitHub repo first, then run:
 
 ```bash
-git init
-git add .
-git commit -m "Initial hospital management system"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
 git push -u origin main
 ```
-
-## Notes
-
-- Keep real database passwords out of GitHub.
-- The app creates tables automatically, but it does not seed sample data.
-- Delete/discharge actions ask for confirmation before removing records.

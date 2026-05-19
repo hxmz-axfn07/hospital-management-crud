@@ -1,6 +1,6 @@
-"""Backward-compatible launcher for the hospital management CLI."""
+"""Run the City Hospital Management System."""
 
-from hms.cli import run
+from hms.app import run
 
 
 if __name__ == "__main__":

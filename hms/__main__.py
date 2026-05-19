@@ -1,4 +1,4 @@
-from .cli import run
+from hms.app import run
 
 
 if __name__ == "__main__":
