@@ -27,10 +27,24 @@ def confirm(message):
 
 
 def show_menu(title, options):
-    print(f"\n{title}")
-    print("-" * len(title))
+    width = 55
+    print()
+    print("\t\t" + "=" * width)
+    print("\t\t" + title.upper().center(width))
+    print("\t\t" + "=" * width)
+    print()
     for number, text in options.items():
-        print(f"{number}. {text}")
+        print(f"\t\t {number}. {text}")
+    print()
+
+
+def show_banner(message):
+    width = 55
+    print()
+    print("\t\t" + "=" * width)
+    print("\t\t" + message.upper().center(width))
+    print("\t\t" + "=" * width)
+    print()
 
 
 def show_table(cursor, query, values=None):
@@ -73,7 +87,7 @@ def add_doctor(cursor, connection):
         (doctor_id, name, specialisation, address, contact, salary),
     )
     connection.commit()
-    print("Doctor added successfully.")
+    show_banner("Doctor added successfully")
 
 
 def add_nurse(cursor, connection):
@@ -88,7 +102,7 @@ def add_nurse(cursor, connection):
         (nurse_id, name, address, contact, salary),
     )
     connection.commit()
-    print("Nurse added successfully.")
+    show_banner("Nurse added successfully")
 
 
 def add_worker(cursor, connection):
@@ -103,7 +117,7 @@ def add_worker(cursor, connection):
         (worker_id, name, address, contact, salary),
     )
     connection.commit()
-    print("Worker added successfully.")
+    show_banner("Worker added successfully")
 
 
 def add_patient(cursor, connection):
@@ -119,7 +133,7 @@ def add_patient(cursor, connection):
         (patient_id, name, sex, age, address, contact),
     )
     connection.commit()
-    print("Patient added successfully.")
+    show_banner("Patient added successfully")
 
 
 def choose_staff_type():
@@ -190,14 +204,18 @@ def update_staff(cursor, connection):
     if column is None:
         return
 
-    value = read_int("Enter new monthly salary: ") if column == "Monthly_Salary" else input("Enter new value: ")
+    value = (
+        read_int("Enter new monthly salary: ")
+        if column == "Monthly_Salary"
+        else input("Enter new value: ")
+    )
     table_name, id_column = TABLES[staff_type]
     cursor.execute(
         f"UPDATE {table_name} SET {column} = %s WHERE {id_column} = %s",
         (value, record_id),
     )
     connection.commit()
-    print("Record updated successfully.")
+    show_banner("Record updated successfully")
 
 
 def delete_staff(cursor, connection):
@@ -220,7 +238,7 @@ def delete_staff(cursor, connection):
     table_name, id_column = TABLES[staff_type]
     cursor.execute(f"DELETE FROM {table_name} WHERE {id_column} = %s", (record_id,))
     connection.commit()
-    print("Record deleted successfully.")
+    show_banner("Record deleted successfully")
 
 
 def administration_menu(cursor, connection):
